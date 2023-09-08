@@ -1,0 +1,72 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+body, html {
+    background-color: #000;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    min-height: 300px;
+    max-width: 300px;
+    margin: 100px auto;
+    background-color: #1e1e1e;
+    border-radius: 1em;
+}
+
+.screen {
+    width: 90%;
+    height: 100px;
+    margin: 1em;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 10px;
+    margin: 30px;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.btn {
+    border-radius: 2em;
+    border-style: none;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.op {
+    background-color: #ff8c00;
+    color: #ffffff;
+}
+
+.op:hover {
+    background-color: #ffa500;
+}
+
+.op:active {
+    background-color: #df7b00;
+}
+
+.num {
+    background-color: #4e4e4e;
+    color: #ffffff;
+}
+
+.num:hover {
+    background-color: #5e5e5e;
+}
+
+.num:active {
+    background-color: #3e3e3e;
+}
+
