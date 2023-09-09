@@ -3,7 +3,6 @@ let secondOperand = '';
 let currentOperation = null;
 let shouldReset = false;
 
-const lastOpScreen = document.getElementById('lastOpScreen');
 const currentOpScreen = document.getElementById('currentOpScreen');
 const numberButtons = document.querySelectorAll('.num');
 const operatorButtons = document.querySelectorAll('.op');
@@ -25,7 +24,6 @@ const resetScreen = () => {
 }
 
 const clearScreen = () => {
-    lastOpScreen.textContent = '';
     currentOpScreen.textContent = '0';
     firstOperand = '';
     secondOperand = '';
@@ -52,7 +50,6 @@ const setOperation = operator => {
     if (currentOperation !== null) evaluate(); 
     firstOperand = currentOpScreen.textContent;
     currentOperation = operator;
-    lastOpScreen.textContent = `${firstOperand} ${currentOperation}`
     shouldReset = true;
 }
 
@@ -60,11 +57,11 @@ const evaluate = () => {
     if (currentOperation === null || shouldReset) return;
     if (currentOperation === '÷' && currentOpScreen.textContent === '0') {
         alert('Nice try, Einstein.');
+        currentOperation = null;
         return;
     }
     secondOperand = currentOpScreen.textContent;
     currentOpScreen.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand))
-    lastOpScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
     currentOperation = null;
 }
 
