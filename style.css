@@ -69,16 +69,16 @@ body, html {
     background-color: #df7b00;
 }
 
-.num {
+.num, #decimal {
     background-color: #4e4e4e;
     color: #ffffff;
 }
 
-.num:hover {
+.num:hover, #decimal:hover {
     background-color: #5e5e5e;
 }
 
-.num:active {
+.num:active, #decimal:active {
     background-color: #3e3e3e;
 }
 

@@ -17,6 +17,7 @@ operatorButtons.forEach(button => button.addEventListener('click', () => setOper
 clearButton.addEventListener('click', () => clearScreen());
 deleteButton.addEventListener('click', () => deleteNumber());
 equalsButton.addEventListener('click', () => evaluate());
+decimalButton.addEventListener('click', () => appendDecimal());
 
 const resetScreen = () => {
     currentOpScreen.textContent = '';
@@ -40,6 +41,11 @@ const appendNumber = num => {
     if (currentOpScreen.textContent === '0' || shouldReset)
         resetScreen();
         currentOpScreen.textContent += num;
+}
+
+const appendDecimal = () => {
+    if (currentOpScreen.textContent.includes('.')) return;
+    currentOpScreen.textContent += '.';
 }
 
 const setOperation = operator => {
