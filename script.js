@@ -1,6 +1,6 @@
 let firstOperand = '';
 let secondOperand = '';
-let currentOperation = '';
+let currentOperation = null;
 let shouldReset = false;
 
 const lastOpScreen = document.getElementById('lastOpScreen');
@@ -13,8 +13,10 @@ const decimalButton = document.getElementById('decimal');
 const equalsButton = document.getElementById('equalsBtn');
 
 numberButtons.forEach(button => button.addEventListener('click', () => appendNumber(button.textContent)));
-operatorButtons.forEach(button => button.addEventListener('click', () => appendNumber(button.textContent)));
+operatorButtons.forEach(button => button.addEventListener('click', () => setOperation(button.textContent)));
 clearButton.addEventListener('click', () => clearScreen());
+deleteButton.addEventListener('click', () => deleteNumber());
+equalsButton.addEventListener('click', () => evaluate());
 
 const resetScreen = () => {
     currentOpScreen.textContent = '';
@@ -24,12 +26,44 @@ const resetScreen = () => {
 const clearScreen = () => {
     lastOpScreen.textContent = '';
     currentOpScreen.textContent = '0';
+    firstOperand = '';
+    secondOperand = '';
+    currentOperation = null;
+}
+
+const deleteNumber = () => {
+    currentOpScreen.textContent = 
+    currentOpScreen.textContent.toString().slice(0,-1);
 }
 
 const appendNumber = num => {
     if (currentOpScreen.textContent === '0' || shouldReset)
         resetScreen();
         currentOpScreen.textContent += num;
+}
+
+const setOperation = operator => {
+    if (currentOperation !== null) evaluate(); 
+    firstOperand = currentOpScreen.textContent;
+    currentOperation = operator;
+    lastOpScreen.textContent = `${firstOperand} ${currentOperation}`
+    shouldReset = true;
+}
+
+const evaluate = () => {
+    if (currentOperation === null || shouldReset) return;
+    if (currentOperation === '÷' && currentOpScreen.textContent === '0') {
+        alert('Nice try, Einstein.');
+        return;
+    }
+    secondOperand = currentOpScreen.textContent;
+    currentOpScreen.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand))
+    lastOpScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+    currentOperation = null;
+}
+
+const roundResult = num => {
+    return Math.round(num * 1000) / 1000;
 }
 
 const add = (a, b) => {
