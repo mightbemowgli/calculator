@@ -13,10 +13,8 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 60vh;
-    min-height: 300px;
     max-width: 300px;
     margin: 100px auto;
-    background-color: #1e1e1e;
     border-radius: 1em;
 }
 
@@ -82,3 +80,16 @@ body, html {
     background-color: #3e3e3e;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #ffa500;
+}
